@@ -202,19 +202,70 @@ class DetailPage extends StatelessWidget {
   final String title;
   final List<String> options;
   final String note;
-  const DetailPage({super.key, required this.title, required this.options, required this.note});
+
+  const DetailPage({
+    super.key,
+    required this.title,
+    required this.options,
+    required this.note,
+  });
+
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: Text(title)),
-    body: ListView(padding: const EdgeInsets.all(16), children: [
-      for (final option in options)
-        Card(child: ListTile(title: Text(option), trailing: const Icon(Icons.chevron_right),
-          onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('यह सुविधा अगले विकास चरण में जोड़ी जाएगी।'))))),
-      const SizedBox(height: 12),
-      Container(padding: const EdgeInsets.all(14),
-        decoration: BoxDecoration(color: const Color(0xFFE8F0FF), borderRadius: BorderRadius.circular(14)),
-        child: Text(note, style: const TextStyle(height: 1.4))),
-    ]),
+    body: ListView(
+      padding: const EdgeInsets.all(16),
+      children: [
+        for (final option in options)
+          Card(
+            child: ListTile(
+              title: Text(option),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => InfoPage(title: option),
+                ),
+              ),
+            ),
+          ),
+        const SizedBox(height: 12),
+        Text(note),
+      ],
+    ),
+  );
+}
+
+class InfoPage extends StatelessWidget {
+  final String title;
+
+  const InfoPage({super.key, required this.title});
+
+  String get information {
+    if (title.contains('फसल')) {
+      return 'फसल की अच्छी पैदावार के लिए मिट्टी की जाँच, उचित सिंचाई और सही समय पर खाद का उपयोग जरूरी है।';
+    }
+    if (title.contains('बीज')) {
+      return 'हमेशा प्रमाणित बीज खरीदें। बीज की किस्म और समाप्ति तिथि जाँचें।';
+    }
+    if (title.contains('योजनाएँ')) {
+      return 'किसान सम्मान निधि, फसल बीमा और कृषि सब्सिडी की जानकारी यहाँ उपलब्ध होगी।';
+    }
+    if (title.contains('मंडी')) {
+      return 'मंडी भाव रोज बदलते हैं। बिक्री से पहले स्थानीय मंडी में भाव की पुष्टि करें।';
+    }
+    return 'इस सुविधा की जानकारी जल्द जोड़ी जाएगी।';
+  }
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(title: Text(title)),
+    body: Padding(
+      padding: const EdgeInsets.all(20),
+      child: Text(
+        information,
+        style: const TextStyle(fontSize: 18, height: 1.6),
+      ),
+    ),
   );
 }
