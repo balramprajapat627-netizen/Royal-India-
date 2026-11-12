@@ -281,7 +281,7 @@ class _HomePageState extends State<HomePage> {
         title: Text('गाँव / शहर'), subtitle: Text('स्थान की जानकारी आगे जोड़ी जाएगी।'))),
       const SizedBox(height: 12),
       const Text('यह शुरुआती संस्करण है। आपकी जानकारी अभी सर्वर पर सेव नहीं होती।',
-        textAlign: TextAlign.center, style: TextStyle(color: Colors.Colors.blueGrey)),
+        textAlign: TextAlign.center, style: TextStyle(color: Colors.blueGrey)),
     ],
   );
 
@@ -432,7 +432,7 @@ class InfoPage extends StatelessWidget {
         ),
         const SizedBox(height: 14),
         const Text('महत्वपूर्ण: खेती में दवा, खाद और छिड़काव का निर्णय स्थानीय मौसम, फसल की अवस्था और कृषि विशेषज्ञ की सलाह के अनुसार करें।',
-          style: TextStyle(color: Colors.Colors.blueGrey, height: 1.5)),
+          style: TextStyle(color: Colors.blueGrey, height: 1.5)),
       ],
     ),
   );
