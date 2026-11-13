@@ -11,7 +11,22 @@ class AgriTopic {
   final String category;
   final String title;
   final String description;
-  const AgriTopic(this.category, this.title, this.description);
+  final String symptoms;
+  final String cause;
+  final String damage;
+  final String treatment;
+  final String prevention;
+
+  const AgriTopic(
+    this.category,
+    this.title,
+    this.description, {
+    this.symptoms = '',
+    this.cause = '',
+    this.damage = '',
+    this.treatment = '',
+    this.prevention = '',
+  });
 }
 
 const topics = <AgriTopic>[
@@ -38,7 +53,16 @@ const topics = <AgriTopic>[
   AgriTopic('खाद', 'एनपीके खाद', 'एनपीके खाद में नाइट्रोजन, फास्फोरस और पोटाश होते हैं। सही अनुपात फसल के अनुसार चुनें।'),
   AgriTopic('खाद', 'जैविक खाद', 'गोबर की अच्छी सड़ी खाद और कम्पोस्ट मिट्टी की संरचना सुधारने में मदद कर सकते हैं।'),
 
-  AgriTopic('रोग', 'सोयाबीन में पीलापन: कारण और उपाय', 'लक्षण: पत्तियाँ पीली होना, नसों का हरा रहना या पीले धब्बे दिखना। संभावित कारण: पोषक तत्वों की कमी, जलभराव, जड़ों की बीमारी या पीला मोजेक वायरस। उपाय: पत्तियों और जड़ों की जाँच करें। खेत में जल निकास रखें। रोगग्रस्त पौधों की पहचान करें। रोग की पुष्टि कृषि विशेषज्ञ से कराएँ। बिना पुष्टि के दवा का छिड़काव न करें।'),
+  AgriTopic(
+    'रोग',
+    'सोयाबीन में पीलापन: कारण और उपाय',
+    'पत्तियों का पीला होना पोषक तत्वों की कमी, जलभराव, जड़ों की समस्या या पीला मोजेक वायरस के कारण हो सकता है।',
+    symptoms: 'पत्तियाँ एकसमान पीली होना, नसों के बीच पीलापन या पीले-हरे चितकबरे धब्बे दिखना।',
+    cause: 'पोषक तत्वों की कमी, खेत में पानी रुकना, जड़ों की बीमारी या सफेद मक्खी से फैलने वाला पीला मोजेक वायरस संभावित कारण हैं।',
+    damage: 'पौधे की बढ़वार रुक सकती है, फूल और फलियाँ कम बन सकती हैं तथा पैदावार घट सकती है।',
+    treatment: 'पहले पत्तियों और जड़ों की जाँच करके सही कारण पहचानें। जलभराव हो तो निकास करें। वायरस की आशंका होने पर कृषि विशेषज्ञ से पुष्टि कराएँ।',
+    prevention: 'स्वस्थ प्रमाणित बीज लें, खेत में जल निकास रखें, खरपतवार हटाएँ और फसल की नियमित निगरानी करें।',
+  ),
   AgriTopic('रोग', 'गेहूँ में पीला रतुआ: पहचान और बचाव', 'लक्षण: पत्तियों पर पीले-नारंगी छोटे फफोले धारियों में दिखाई देते हैं। कारण: यह फफूंद से होने वाला रोग है और हवा से फैल सकता है। बचाव: रोगरोधी किस्म अपनाएँ और खेत की नियमित निगरानी करें। रोग की पुष्टि कृषि विशेषज्ञ से कराएँ। जरूरत होने पर ही उनकी सलाह और दवा के लेबल के अनुसार फफूंदनाशक का उपयोग करें।'),
   AgriTopic('रोग', 'मक्का में पत्ती धब्बा रोग: पहचान और बचाव', 'लक्षण: पत्तियों पर लंबे भूरे या धूसर धब्बे दिखाई दे सकते हैं। कारण: यह पत्ती झुलसा जैसे फफूंद रोग का लक्षण हो सकता है, लेकिन अन्य कारण भी संभव हैं। बचाव: रोगग्रस्त अवशेष हटाएँ, फसल चक्र अपनाएँ और खेत में उचित हवा का आवागमन रखें। रोग की पुष्टि कृषि विशेषज्ञ से कराएँ। जरूरत होने पर ही उनकी सलाह और दवा के लेबल के अनुसार उपचार करें।'),
   AgriTopic('रोग', 'चना में उकठा रोग: पहचान और बचाव', 'लक्षण: पौधे की पत्तियाँ पीली पड़ने लगती हैं और पूरा पौधा धीरे-धीरे या अचानक मुरझा सकता है। तने को काटने पर अंदर भूरापन दिख सकता है। कारण: यह मिट्टी में रहने वाले फफूंद से होने वाला रोग है। बचाव: रोगमुक्त बीज और रोगरोधी किस्म अपनाएँ। फसल चक्र में गेहूँ या अन्य अनाज वाली फसल लें। रोगग्रस्त पौधों को खेत से हटाएँ। रोग की पुष्टि कृषि विशेषज्ञ से कराएँ और उनकी सलाह के अनुसार ही उपचार करें।'),
@@ -319,7 +343,7 @@ class _AgriculturePageState extends State<AgriculturePage> {
   final search = TextEditingController();
   String selected = 'सभी';
 
-  final categories = ['सभी', 'फसल', 'बीज', 'खाद', 'रोग', 'कीट', 'सिंचाई', 'मशीन', 'व्यवसाय', 'योजना'];
+  final categories = ['सभी', 'फसल सलाह', 'बीज', 'खाद', 'रोग', 'कीट', 'सिंचाई', 'मशीन', 'व्यवसाय', 'योजना'];
 
   @override
   void initState() {
@@ -336,7 +360,7 @@ class _AgriculturePageState extends State<AgriculturePage> {
   @override
   Widget build(BuildContext context) {
     final filtered = topics.where((item) {
-      final matchesCategory = selected == 'सभी' || item.category == selected;
+      final matchesCategory = selected == 'सभी' || (selected == 'फसल सलाह' ? item.category == 'फसल' : item.category == selected);
       final q = search.text.toLowerCase();
       final matchesSearch = item.title.toLowerCase().contains(q) ||
           item.description.toLowerCase().contains(q) ||
@@ -405,7 +429,15 @@ class _AgriculturePageState extends State<AgriculturePage> {
                         subtitle: Text(item.category),
                         trailing: const Icon(Icons.chevron_right, color: gold),
                         onTap: () => Navigator.push(context, MaterialPageRoute(
-                          builder: (_) => InfoPage(title: item.title, description: item.description))),
+                          builder: (_) => InfoPage(
+                            title: item.title,
+                            description: item.description,
+                            symptoms: item.symptoms,
+                            cause: item.cause,
+                            damage: item.damage,
+                            treatment: item.treatment,
+                            prevention: item.prevention,
+                          ))),
                       ),
                     );
                   },
@@ -419,7 +451,56 @@ class _AgriculturePageState extends State<AgriculturePage> {
 class InfoPage extends StatelessWidget {
   final String title;
   final String description;
-  const InfoPage({super.key, required this.title, required this.description});
+  final String symptoms;
+  final String cause;
+  final String damage;
+  final String treatment;
+  final String prevention;
+
+  const InfoPage({
+    super.key,
+    required this.title,
+    required this.description,
+    this.symptoms = '',
+    this.cause = '',
+    this.damage = '',
+    this.treatment = '',
+    this.prevention = '',
+  });
+
+  Widget infoCard(String heading, String content, IconData icon) {
+    if (content.isEmpty) return const SizedBox.shrink();
+
+    return Card(
+      margin: const EdgeInsets.only(bottom: 12),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(icon, color: blue),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    heading,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: navy,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Text(content, style: const TextStyle(fontSize: 16, height: 1.6)),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -431,15 +512,17 @@ class InfoPage extends StatelessWidget {
         const SizedBox(height: 16),
         Text(title, style: const TextStyle(fontSize: 23, fontWeight: FontWeight.bold, color: navy)),
         const SizedBox(height: 14),
-        Card(
-          child: Padding(
-            padding: const EdgeInsets.all(18),
-            child: Text(description, style: const TextStyle(fontSize: 17, height: 1.7)),
-          ),
-        ),
+        infoCard('सामान्य जानकारी', description, Icons.info_outline),
+        infoCard('बीमारी के लक्षण', symptoms, Icons.search),
+        infoCard('बीमारी का कारण', cause, Icons.help_outline),
+        infoCard('फसल को नुकसान', damage, Icons.warning_amber),
+        infoCard('उपचार', treatment, Icons.healing),
+        infoCard('बचाव', prevention, Icons.shield_outlined),
         const SizedBox(height: 14),
-        const Text('महत्वपूर्ण: खेती में दवा, खाद और छिड़काव का निर्णय स्थानीय मौसम, फसल की अवस्था और कृषि विशेषज्ञ की सलाह के अनुसार करें।',
-          style: TextStyle(color: Colors.blueGrey, height: 1.5)),
+        const Text(
+          'महत्वपूर्ण: दवा का चयन बीमारी की सही पहचान के बाद ही करें। स्थानीय कृषि विशेषज्ञ की सलाह और दवा के लेबल पर दिए निर्देशों का पालन करें।',
+          style: TextStyle(color: Colors.blueGrey, height: 1.5),
+        ),
       ],
     ),
   );
